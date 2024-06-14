@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Grade Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 50%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .total {
+            font-weight: bold;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Course Grade Calculator</h2>
+    <table>
+        <tr>
+            <th>Component</th>
+            <th>Weight (%)</th>
+            <th>Score (%)</th>
+            <th>Weighted Score</th>
+        </tr>
+        <tr>
+            <td>Project Report 1</td>
+            <td><input type="number" id="weight1" value="15" readonly></td>
+            <td><input type="number" id="score1" oninput="calculateGrade()"></td>
+            <td><span id="weighted1"></span></td>
+        </tr>
+        <tr>
+            <td>Project Report 2</td>
+            <td><input type="number" id="weight2" value="15" readonly></td>
+            <td><input type="number" id="score2" oninput="calculateGrade()"></td>
+            <td><span id="weighted2"></span></td>
+        </tr>
+        <tr>
+            <td>Project Report 3</td>
+            <td><input type="number" id="weight3" value="15" readonly></td>
+            <td><input type="number" id="score3" oninput="calculateGrade()"></td>
+            <td><span id="weighted3"></span></td>
+        </tr>
+        <tr>
+            <td>MATLAB Hands-on Exercise</td>
+            <td><input type="number" id="weight4" value="5" readonly></td>
+            <td><input type="number" id="score4" oninput="calculateGrade()"></td>
+            <td><span id="weighted4"></span></td>
+        </tr>
+        <tr>
+            <td>Electrical Circuits Lab Report</td>
+            <td><input type="number" id="weight5" value="15" readonly></td>
+            <td><input type="number" id="score5" oninput="calculateGrade()"></td>
+            <td><span id="weighted5"></span></td>
+        </tr>
+        <tr>
+            <td>Attendance</td>
+            <td><input type="number" id="weight6" value="25" readonly></td>
+            <td><input type="number" id="score6" oninput="calculateGrade()"></td>
+            <td><span id="weighted6"></span></td>
+        </tr>
+        <tr>
+            <td>Ethics Homework</td>
+            <td><input type="number" id="weight7" value="10" readonly></td>
+            <td><input type="number" id="score7" oninput="calculateGrade()"></td>
+            <td><span id="weighted7"></span></td>
+        </tr>
+        <tr class="total">
+            <td>Total</td>
+            <td>100</td>
+            <td></td>
+            <td><span id="totalWeightedScore"></span></td>
+        </tr>
+    </table>
+    <div class="result">
+        <h3>Your Total Course Grade: <span id="totalGrade"></span></h3>
+    </div>
+
+    <script>
+        function calculateGrade() {
+            let totalWeightedScore = 0;
+
+            for (let i = 1; i <= 7; i++) {
+                const weight = document.getElementById(`weight${i}`).value;
+                const score = document.getElementById(`score${i}`).value;
+                const weightedScore = (weight * score) / 100;
+                document.getElementById(`weighted${i}`).innerText = weightedScore.toFixed(2);
+                totalWeightedScore += weightedScore;
+            }
+
+            document.getElementById('totalWeightedScore').innerText = totalWeightedScore.toFixed(2);
+            document.getElementById('totalGrade').innerText = totalWeightedScore.toFixed(2);
+        }
+    </script>
+</body>
+</html>
